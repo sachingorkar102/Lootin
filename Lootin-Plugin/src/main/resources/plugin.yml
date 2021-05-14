@@ -1,0 +1,17 @@
+name: Lootin
+version: ${project.version}
+main: me.sachin.lootin.Lootin
+api-version: 1.16
+softdepend: [ Terra ]
+authors: [ sachingorkar ]
+description: unique inventories for loot chest for every player on a server.
+commands:
+  lootin:
+    description: main command for lootin plugin
+permissions:
+  lootin.command.reload:
+    description: allows reload command for lootin plugin
+    default: op   
+  lootin.breakchest.bypass:
+    description: without this permission players cant break lootin chest
+    default: op  
