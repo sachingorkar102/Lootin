@@ -98,6 +98,8 @@ $RECYCLE.BIN/
 target/
 bukkit.yml
 plugins
+.vscode
+assets
 
 
 pom.xml.tag
