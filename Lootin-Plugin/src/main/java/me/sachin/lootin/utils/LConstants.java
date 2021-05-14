@@ -11,8 +11,8 @@ public class LConstants{
     public static final String BLACK_LIST_CONFIG = "blacklist-worlds";
     public static final String DELETE_ITEMS_CONFIG = "delete-items-on-break";
     public static final String CHANGE_MINECARTS_CONFIG = "change-minecarts";
-    public static final String BLOCK_BREAK_MESSAGE = "blockbreak-with-message";
-    public static final String BLOCK_BREAK_WITHOUT_PERM_MESSAGE = "blockbreak-without-permission-message";
+    public static final String BLOCK_BREAK_MESSAGE = "messages.blockbreak-with-permission";
+    public static final String BLOCK_BREAK_WITHOUT_PERM_MESSAGE = "messages.blockbreak-without-permission";
     public static final String BLACKLIST_STRUCTURES = "blacklist-structures";
     public static final String PREVENT_EXPLOSION = "prevent-explosion";
     public static final String BLACKLIST_TERRA_STRUCTURES = "blacklist-terra-strucutres";

@@ -30,7 +30,7 @@ public class ConfigUtils {
     }
 
     public String getBlockBreakMessage(){
-        String message = plugin.getConfig().getString(LConstants.BLOCK_BREAK_MESSAGE);
+        String message = plugin.getConfig().getString(LConstants.BLOCK_BREAK_MESSAGE," ");
         return ChatColor.translateAlternateColorCodes('&', 
         message);
     }
@@ -49,7 +49,7 @@ public class ConfigUtils {
     }
 
     public String getBlockBreakWithoutPermMessage(){
-        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(LConstants.BLOCK_BREAK_WITHOUT_PERM_MESSAGE,""));
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(LConstants.BLOCK_BREAK_WITHOUT_PERM_MESSAGE," "));
     }
 
 
