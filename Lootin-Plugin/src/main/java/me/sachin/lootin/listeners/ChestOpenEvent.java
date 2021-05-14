@@ -20,6 +20,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.sachin.lootin.Lootin;
 import me.sachin.lootin.utils.ItemSerializer;
 import me.sachin.lootin.utils.LConstants;
@@ -50,7 +51,7 @@ public class ChestOpenEvent implements Listener{
                     List<ItemStack> rightSideItems = setChestInventory(p, rightSide);
                     List<ItemStack> mainItems = new ArrayList<>();
                     Stream.of(leftSideItems,rightSideItems).forEach(mainItems::addAll);
-                    Inventory inv = Bukkit.createInventory(p, 54,plugin.config().getTitle(LConstants.DOUBLE_CHEST_TITLE));
+                    Inventory inv = Bukkit.createInventory(p, 54,PlaceholderAPI.setPlaceholders(p, plugin.config().getTitle(LConstants.DOUBLE_CHEST_TITLE)));
                     inv.setContents(mainItems.toArray(new ItemStack[0]));
                     plugin.getCurrentlyEditedChest().add(leftSide.getLocation());
                     plugin.getCurrentlyEditedChest().add(rightSide.getLocation());
@@ -62,7 +63,7 @@ public class ChestOpenEvent implements Listener{
                 }
                 else{
                     List<ItemStack> items = setChestInventory(p, chest);
-                    Inventory inv = Bukkit.createInventory(p, 27, plugin.config().getTitle(LConstants.SINGLE_CHEST_TITLE));
+                    Inventory inv = Bukkit.createInventory(p, 27, PlaceholderAPI.setPlaceholders(p, plugin.config().getTitle(LConstants.SINGLE_CHEST_TITLE)));
                     e.setCancelled(true);
                     chest.open();
                     inv.setContents(items.toArray(new ItemStack[0]));
@@ -87,7 +88,7 @@ public class ChestOpenEvent implements Listener{
             if(plugin.isBlackListMinecart(minecart)) return;
             if(minecart.getLootTable() != null || plugin.isLootinChestForItems(minecart)){
                 List<ItemStack> items = setChestInventory(p, minecart);
-                Inventory inv = Bukkit.createInventory(p, 27,plugin.config().getTitle(LConstants.MINECART_TITLE));
+                Inventory inv = Bukkit.createInventory(p, 27,PlaceholderAPI.setPlaceholders(p, plugin.config().getTitle(LConstants.MINECART_TITLE)));
                 inv.setContents(items.toArray(new ItemStack[0]));
                 e.setCancelled(true);
                 p.openInventory(inv);
