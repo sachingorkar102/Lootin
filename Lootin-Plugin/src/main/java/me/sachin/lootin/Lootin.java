@@ -108,7 +108,7 @@ public final class Lootin extends JavaPlugin implements Listener {
         }
 
         if(pm.isPluginEnabled("CustomStructures")){
-            getLogger().info("Found CustomStructures registering listeners");
+            getLogger().info("Found CustomStructures, registering listeners");
             pm.registerEvents(new CustomStructuresLootPopulateEvent(this), this);
         }
     }

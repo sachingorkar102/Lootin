@@ -20,7 +20,7 @@ change-minecarts: true
 # Loot chest and minecarts titles
 # color codes supported
 title:
-  single-chest: "Chest %player_name%"
+  single-chest: "Chest"
   double-chest: "Double Chest"
   minecart: "Minecart with Chest"
 
@@ -34,5 +34,8 @@ prevent-explosion: true
 # list of TERRA structures where lootin will not modify loot chests
 # LootinTerraAddon(in plugins/Terra/addons folder) and Terra plugin(in plugins folder) is required for this to function
 blacklist-terra-strucutres: []
+
+# list of CustomStructures where lootin will not modify loot chests
+blacklist-custom-structures: []
 
 
