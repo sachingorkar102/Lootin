@@ -45,6 +45,7 @@ public class LootGenerateListener implements Listener{
         else if(e.getInventoryHolder() instanceof Chest){
             
             TileState tile = (TileState) state;
+            
             PersistentDataContainer data = tile.getPersistentDataContainer();
             data.set(key, PersistentDataType.STRING, "");
             tile.update();

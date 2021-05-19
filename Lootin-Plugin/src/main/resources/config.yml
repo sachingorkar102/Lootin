@@ -35,4 +35,7 @@ prevent-explosion: true
 # LootinTerraAddon(in plugins/Terra/addons folder) and Terra plugin(in plugins folder) is required for this to function
 blacklist-terra-strucutres: []
 
+# list of CustomStructures where lootin will not modify loot chests
+blacklist-custom-structures: []
+
 

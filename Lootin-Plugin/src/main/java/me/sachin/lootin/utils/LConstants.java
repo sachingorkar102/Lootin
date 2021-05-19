@@ -16,6 +16,7 @@ public class LConstants{
     public static final String BLACKLIST_STRUCTURES = "blacklist-structures";
     public static final String PREVENT_EXPLOSION = "prevent-explosion";
     public static final String BLACKLIST_TERRA_STRUCTURES = "blacklist-terra-strucutres";
+    public static final String BLACKLIST_CUSTOM_STRUCTURES = "blacklist-custom-strucutres";
 
     // chest titles
     public static final String SINGLE_CHEST_TITLE = "title.single-chest";

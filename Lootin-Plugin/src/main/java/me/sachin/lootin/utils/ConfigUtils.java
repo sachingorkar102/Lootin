@@ -78,4 +78,8 @@ public class ConfigUtils {
     public List<String> getBlackListTerraStructures(){
         return plugin.getConfig().getStringList(LConstants.BLACKLIST_TERRA_STRUCTURES);
     }
+
+    public List<String> getBlackListCustomStructures(){
+        return plugin.getConfig().getStringList(LConstants.BLACKLIST_CUSTOM_STRUCTURES);
+    }
 }

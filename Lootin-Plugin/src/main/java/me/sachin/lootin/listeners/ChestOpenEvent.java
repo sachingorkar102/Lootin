@@ -124,8 +124,9 @@ public class ChestOpenEvent implements Listener{
         return items;
     }
 
-    public List<ItemStack> setChestInventory(Player p,Chest chest){
+    public static List<ItemStack> setChestInventory(Player p,Chest chest){
         List<ItemStack> items = new ArrayList<>();
+        Lootin plugin = Lootin.getPlugin();
         BlockState state = chest.getBlock().getState();
         if(plugin.hasPlayerContents(state, p)){
             items = ItemSerializer.getItems((TileState)state, p.getUniqueId().toString());

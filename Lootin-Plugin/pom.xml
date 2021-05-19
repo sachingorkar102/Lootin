@@ -6,7 +6,7 @@
 
     <groupId>me.sachin.lootin</groupId>
     <artifactId>Lootin</artifactId>
-    <version>0.8</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>Lootin</name>
@@ -68,6 +68,7 @@
         </repository>
     </repositories>
 
+
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -80,6 +81,13 @@
              <artifactId>placeholderapi</artifactId>
              <version>2.10.9</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>CustomStructures</groupId>
+            <artifactId>customstructures</artifactId>
+            <version>2.0.27</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/CustomStructures-1.5.7.1.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

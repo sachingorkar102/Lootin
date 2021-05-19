@@ -25,6 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.sachin.lootin.commands.LootinCommand;
 import me.sachin.lootin.listeners.ChestCloseEvent;
 import me.sachin.lootin.listeners.ChestOpenEvent;
+import me.sachin.lootin.listeners.CustomStructuresLootPopulateEvent;
 import me.sachin.lootin.listeners.ItemMoveEvent;
 import me.sachin.lootin.listeners.LootGenerateListener;
 import me.sachin.lootin.listeners.LootinChestBreakEvent;
@@ -106,6 +107,10 @@ public final class Lootin extends JavaPlugin implements Listener {
             }
         }
 
+        if(pm.isPluginEnabled("CustomStructures")){
+            getLogger().info("Found CustomStructures registering listeners");
+            pm.registerEvents(new CustomStructuresLootPopulateEvent(this), this);
+        }
     }
 
     public void reloadConfigFiles(){
