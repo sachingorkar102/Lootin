@@ -27,6 +27,7 @@ public class CustomStructuresLootPopulateEvent implements Listener{
     @EventHandler
     public void lootPopulateEvent(LootPopulateEvent e){
         if(plugin.config().getBlackListCustomStructures().contains(e.getStructure().getName())) return;
+        if(plugin.isBlackListWorld(e.getLocation().getWorld().getName())) return;
         BlockState state = e.getLocation().getBlock().getState();
         Container container = (Container) state;
         Inventory cInventory = container.getInventory();
