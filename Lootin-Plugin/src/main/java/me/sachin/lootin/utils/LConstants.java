@@ -14,6 +14,7 @@ public class LConstants{
     public static final String BLOCK_BREAK_MESSAGE = "messages.blockbreak-with-permission";
     public static final String BLOCK_BREAK_WITHOUT_PERM_MESSAGE = "messages.blockbreak-without-permission";
     public static final String BLACKLIST_STRUCTURES = "blacklist-structures";
+    public static final String CHEST_EDITING = "chest-editing";
     public static final String PREVENT_EXPLOSION = "prevent-explosion";
     public static final String BLACKLIST_TERRA_STRUCTURES = "blacklist-terra-strucutres";
     public static final String BLACKLIST_CUSTOM_STRUCTURES = "blacklist-custom-structures";

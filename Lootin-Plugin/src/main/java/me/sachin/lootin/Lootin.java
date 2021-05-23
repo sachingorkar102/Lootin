@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -22,6 +23,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.sachin.lootin.commands.LootinCommand;
 import me.sachin.lootin.listeners.ChestCloseEvent;
 import me.sachin.lootin.listeners.ChestOpenEvent;
@@ -39,6 +41,7 @@ public final class Lootin extends JavaPlugin implements Listener {
     private static ItemStack tempItem;
     private static Lootin plugin;
     private ConfigUtils config;
+    private boolean papiEnabled;
     private HashMap<Player,Location> currentChestViewvers = new HashMap<>();
     private HashMap<Player,StorageMinecart> currentMinecartViewvers = new HashMap<>();
     private List<Location> currentlyEditedChest = new ArrayList<>();
@@ -106,6 +109,7 @@ public final class Lootin extends JavaPlugin implements Listener {
                 getLogger().info("download addon from here https://www.spigotmc.org/resources/90868/");
             }
         }
+        papiEnabled = pm.isPluginEnabled("PlaceHolderAPI");
 
         if(pm.isPluginEnabled("CustomStructures")){
             getLogger().info("Found CustomStructures, registering listeners");
@@ -192,6 +196,15 @@ public final class Lootin extends JavaPlugin implements Listener {
         }
         else{
             return false;
+        }
+    }
+
+    public String setTitles(String config,Player player){
+        if(papiEnabled){
+            return ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, getConfig().getString(config," ")));
+        }
+        else{
+            return ChatColor.translateAlternateColorCodes('&', getConfig().getString(config,""));
         }
     }
 

@@ -42,7 +42,10 @@ public class LootinChestBreakEvent implements Listener{
             // checks if another player is viewing chest or not
             if(plugin.getCurrentlyEditedChest().contains(chest.getLocation())){
                 e.setCancelled(true);
-                p.sendMessage(ChatColor.RED+"Chest is being currently edited");
+                String chestEditMessage = plugin.setTitles(LConstants.CHEST_EDITING, p);
+                if(chestEditMessage != null){
+                    p.sendMessage(chestEditMessage);
+                }
                 return;
             }
             if(plugin.isBlackListChest(chest)) return;
@@ -51,7 +54,7 @@ public class LootinChestBreakEvent implements Listener{
             if(chest.getLootTable() != null || plugin.isLootinChest(state) || plugin.isLootinChestForItems(state)){
                 if(!p.hasPermission(LConstants.BREAK_CHEST_PERM)){
                     e.setCancelled(true);
-                    String blockBreakMessage = plugin.config().getBlockBreakWithoutPermMessage();
+                    String blockBreakMessage = plugin.setTitles(LConstants.BLOCK_BREAK_WITHOUT_PERM_MESSAGE, p);
                     if(blockBreakMessage != null){
                         p.sendMessage(blockBreakMessage);
                     }
@@ -88,7 +91,7 @@ public class LootinChestBreakEvent implements Listener{
                 }
                 else{
                     e.setCancelled(true);
-                    String message = plugin.config().getBlockBreakMessage();
+                    String message = plugin.setTitles(LConstants.BLOCK_BREAK_MESSAGE, p);
                     
                     if(message != "" && message != null){
                         p.sendMessage(message);

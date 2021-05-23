@@ -51,7 +51,7 @@ public class ChestOpenEvent implements Listener{
                     List<ItemStack> rightSideItems = setChestInventory(p, rightSide);
                     List<ItemStack> mainItems = new ArrayList<>();
                     Stream.of(leftSideItems,rightSideItems).forEach(mainItems::addAll);
-                    Inventory inv = Bukkit.createInventory(p, 54,PlaceholderAPI.setPlaceholders(p, plugin.config().getTitle(LConstants.DOUBLE_CHEST_TITLE)));
+                    Inventory inv = Bukkit.createInventory(p, 54,plugin.setTitles(LConstants.DOUBLE_CHEST_TITLE, p));
                     inv.setContents(mainItems.toArray(new ItemStack[0]));
                     plugin.getCurrentlyEditedChest().add(leftSide.getLocation());
                     plugin.getCurrentlyEditedChest().add(rightSide.getLocation());
@@ -63,7 +63,7 @@ public class ChestOpenEvent implements Listener{
                 }
                 else{
                     List<ItemStack> items = setChestInventory(p, chest);
-                    Inventory inv = Bukkit.createInventory(p, 27, PlaceholderAPI.setPlaceholders(p, plugin.config().getTitle(LConstants.SINGLE_CHEST_TITLE)));
+                    Inventory inv = Bukkit.createInventory(p, 27, plugin.setTitles(LConstants.SINGLE_CHEST_TITLE, p));
                     e.setCancelled(true);
                     chest.open();
                     inv.setContents(items.toArray(new ItemStack[0]));
@@ -88,7 +88,7 @@ public class ChestOpenEvent implements Listener{
             if(plugin.isBlackListMinecart(minecart)) return;
             if(minecart.getLootTable() != null || plugin.isLootinChestForItems(minecart)){
                 List<ItemStack> items = setChestInventory(p, minecart);
-                Inventory inv = Bukkit.createInventory(p, 27,PlaceholderAPI.setPlaceholders(p, plugin.config().getTitle(LConstants.MINECART_TITLE)));
+                Inventory inv = Bukkit.createInventory(p, 27,plugin.setTitles(LConstants.MINECART_TITLE, p));
                 inv.setContents(items.toArray(new ItemStack[0]));
                 e.setCancelled(true);
                 p.openInventory(inv);

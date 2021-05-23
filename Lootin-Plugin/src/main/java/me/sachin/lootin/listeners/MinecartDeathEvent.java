@@ -45,7 +45,7 @@ public class MinecartDeathEvent implements Listener{
             World world = p.getWorld();
             if(!p.hasPermission(LConstants.BREAK_CHEST_PERM)){
                 e.setCancelled(true);
-                String blockBreakMessage = plugin.config().getBlockBreakWithoutPermMessage();
+                String blockBreakMessage = plugin.setTitles(LConstants.BLOCK_BREAK_WITHOUT_PERM_MESSAGE, p);
                 if(blockBreakMessage != null){
                     p.sendMessage(blockBreakMessage);
                 }
@@ -83,7 +83,7 @@ public class MinecartDeathEvent implements Listener{
             }
             else{
                 e.setCancelled(true);
-                String message = plugin.config().getBlockBreakMessage();
+                String message = plugin.setTitles(LConstants.BLOCK_BREAK_MESSAGE, p);
                 
                 if(message != "" && message != null){
                     p.sendMessage(message);

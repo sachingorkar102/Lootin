@@ -6,7 +6,7 @@
 
     <groupId>me.sachin.lootin</groupId>
     <artifactId>Lootin</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>Lootin</name>
