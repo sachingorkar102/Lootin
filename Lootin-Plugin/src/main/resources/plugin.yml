@@ -2,7 +2,7 @@ name: Lootin
 version: ${project.version}
 main: me.sachin.lootin.Lootin
 api-version: 1.16
-softdepend: [ Terra , PlaceholderAPI , CustomStructures]
+softdepend: [ Terra , PlaceholderAPI , CustomStructures, Oh_the_dungeons_youll_go]
 authors: [ sachingorkar ]
 description: unique inventories for loot chest for every player on a server.
 commands:

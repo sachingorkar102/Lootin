@@ -1,5 +1,6 @@
 package me.sachin.lootin.listeners;
 
+import org.bukkit.block.Barrel;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.event.EventHandler;
@@ -34,8 +35,23 @@ public class ItemMoveEvent implements Listener{
             }
             
         }
-        if((finalBlock instanceof Chest)){
+        else if((finalBlock instanceof Chest)){
             Chest finalChest = (Chest) finalBlock;
+            if(finalChest.getLootTable() != null || plugin.isLootinChestForItems(finalBlock)){
+                e.setCancelled(true);
+            }
+        }
+
+        if((initialBlock instanceof Barrel)){
+            Barrel initialChest = (Barrel) initialBlock;
+            if(initialChest.getLootTable() != null || plugin.isLootinChestForItems(initialBlock)){
+              
+                e.setCancelled(true);
+            }
+            
+        }
+        else if((finalBlock instanceof Barrel)){
+            Barrel finalChest = (Barrel) finalBlock;
             if(finalChest.getLootTable() != null || plugin.isLootinChestForItems(finalBlock)){
                 e.setCancelled(true);
             }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
+import org.bukkit.block.Container;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,6 +28,14 @@ public class LootinChestBreakEvent implements Listener{
         this.plugin = plugin;
     }
 
+    private boolean hasLootTable(BlockState state){
+        if(!(state instanceof Chest)){
+            return false;
+        }
+        Chest chest = (Chest) state;
+        return chest.getLootTable() != null;
+    }
+
     @EventHandler(priority = EventPriority.LOWEST)
     public void onChestBreak(BlockBreakEvent e){
         World world = e.getBlock().getWorld();
@@ -36,8 +45,8 @@ public class LootinChestBreakEvent implements Listener{
         }
 
         // check if the block is chest or not
-        if((state instanceof Chest)){
-            Chest chest = (Chest) state;
+        if((state instanceof Container)){
+            Container chest = (Container) state;
             Player p = e.getPlayer();
             // checks if another player is viewing chest or not
             if(plugin.getCurrentlyEditedChest().contains(chest.getLocation())){
@@ -51,7 +60,7 @@ public class LootinChestBreakEvent implements Listener{
             if(plugin.isBlackListChest(chest)) return;
 
             // check if the chest has a lootTable or it is a lootin tagged chest
-            if(chest.getLootTable() != null || plugin.isLootinChest(state) || plugin.isLootinChestForItems(state)){
+            if(hasLootTable(state) || plugin.isLootinChest(state) || plugin.isLootinChestForItems(state)){
                 if(!p.hasPermission(LConstants.BREAK_CHEST_PERM)){
                     e.setCancelled(true);
                     String blockBreakMessage = plugin.setTitles(LConstants.BLOCK_BREAK_WITHOUT_PERM_MESSAGE, p);

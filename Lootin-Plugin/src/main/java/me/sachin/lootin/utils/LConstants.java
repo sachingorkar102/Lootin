@@ -18,11 +18,13 @@ public class LConstants{
     public static final String PREVENT_EXPLOSION = "prevent-explosion";
     public static final String BLACKLIST_TERRA_STRUCTURES = "blacklist-terra-strucutres";
     public static final String BLACKLIST_CUSTOM_STRUCTURES = "blacklist-custom-structures";
+    public static final String BLACKLIST_OTD_STRUCTURES = "blacklist-otd-structures";
 
     // chest titles
     public static final String SINGLE_CHEST_TITLE = "title.single-chest";
     public static final String DOUBLE_CHEST_TITLE = "title.double-chest";
     public static final String MINECART_TITLE = "title.minecart";
+    public static final String BARREL_TITLE = "title.barrel";
 
 
     // permissions

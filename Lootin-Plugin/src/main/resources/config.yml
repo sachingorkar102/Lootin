@@ -24,6 +24,7 @@ title:
   single-chest: "Chest"
   double-chest: "Double Chest"
   minecart: "Minecart with Chest"
+  barrel: "Barrel"
 
 # list of structures where lootin will not modify loot chests
 # valid structure names can be found here https://www.spigotmc.org/resources/90453/
@@ -38,5 +39,8 @@ blacklist-terra-strucutres: []
 
 # list of CustomStructures where lootin will not modify loot chests
 blacklist-custom-structures: []
+
+# list of Oh The Dungeon structures where lootin will not modify loot chests/barrels
+blacklist-otd-structures: []
 
 

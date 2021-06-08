@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
+import org.bukkit.block.Barrel;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
@@ -38,6 +40,21 @@ public class ChestOpenEvent implements Listener{
         String worldName = e.getPlayer().getWorld().getName();
         if(plugin.isBlackListWorld(worldName)) return;
         Player p = (Player) e.getPlayer();
+        if(e.getInventory().getHolder() instanceof Barrel){
+            BlockState state = e.getInventory().getLocation().getBlock().getState();
+            Barrel barrel = (Barrel) state;
+            if(plugin.isLootinChestForItems(state)){
+                List<ItemStack> items = setBarrelInventory(p, barrel);
+                Inventory inv = Bukkit.createInventory(p, 27, plugin.setTitles(LConstants.BARREL_TITLE, p));
+                e.setCancelled(true);
+                barrel.open();
+                inv.setContents(items.toArray(new ItemStack[0]));
+                
+                p.openInventory(inv);
+                plugin.getCurrentlyEditedChest().add(barrel.getLocation());  
+                plugin.getCurrentChestViewvers().put(p, state.getBlock().getLocation());
+            }
+        }
         if((e.getInventory().getHolder() instanceof Chest) || (e.getInventory().getHolder() instanceof DoubleChest)){
             BlockState state = e.getInventory().getLocation().getBlock().getState();
             Chest chest = (Chest) state;
@@ -140,8 +157,24 @@ public class ChestOpenEvent implements Listener{
             chest.getBlockInventory().clear();
         }
         return items;
+    }
 
-
+    public List<ItemStack> setBarrelInventory(Player p,Barrel barrel){
+        List<ItemStack> items = new ArrayList<>();
+        Lootin plugin = Lootin.getPlugin();
+        BlockState state = barrel.getBlock().getState();
+        if(plugin.hasPlayerContents(state, p)){
+            items = ItemSerializer.getItems((TileState)state, p.getUniqueId().toString());
+        }
+        else if(plugin.isLootinChest(state)){
+            items = ItemSerializer.getItems((TileState)state, LConstants.DATA_KEY);
+        }
+        else{
+            items = Arrays.asList(barrel.getInventory().getContents());
+            ItemSerializer.storeItems(items, (TileState)state, LConstants.DATA_KEY);
+            barrel.getInventory().clear();
+        }
+        return items;
     }
 
 

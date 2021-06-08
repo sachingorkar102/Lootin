@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Location;
+import org.bukkit.block.Barrel;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
@@ -42,6 +43,13 @@ public class ChestCloseEvent implements Listener{
             List<ItemStack> contents = Arrays.asList(inventory.getContents());
             List<Location> locList = plugin.getCurrentlyEditedChest();
             BlockState state = plugin.getCurrentChestViewvers().get(p).getBlock().getState();
+            if(state instanceof Barrel){
+                Barrel barrel = (Barrel) state;
+                ItemSerializer.storeItems(contents, (TileState)state, playerId);
+                barrel.close();
+                locList.remove(barrel.getLocation());
+                return;
+            }
             Chest chest = (Chest) state;
             if((chest.getInventory() instanceof DoubleChestInventory) && inventory.getSize() == 54){
                 DoubleChest dChest = (DoubleChest) chest.getInventory().getHolder();

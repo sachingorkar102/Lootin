@@ -10,8 +10,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Barrel;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
+import org.bukkit.block.Container;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.StorageMinecart;
@@ -33,6 +35,7 @@ import me.sachin.lootin.listeners.LootGenerateListener;
 import me.sachin.lootin.listeners.LootinChestBreakEvent;
 import me.sachin.lootin.listeners.LootinChestExplodeEvent;
 import me.sachin.lootin.listeners.MinecartDeathEvent;
+import me.sachin.lootin.listeners.OTDListener;
 import me.sachin.lootin.utils.ConfigUtils;
 import me.sachin.lootin.utils.LConstants;
 
@@ -108,6 +111,10 @@ public final class Lootin extends JavaPlugin implements Listener {
                 getLogger().info("Terra Lootin Addon is required for loot chests in terra structures to be altered");
                 getLogger().info("download addon from here https://www.spigotmc.org/resources/90868/");
             }
+        }
+        if(pm.isPluginEnabled("Oh_the_dungeons_youll_go")){
+            getLogger().info("Found Oh The Dungeons, registering loot listeners...");
+            pm.registerEvents(new OTDListener(this), this);
         }
         papiEnabled = pm.isPluginEnabled("PlaceHolderAPI");
 
@@ -189,6 +196,26 @@ public final class Lootin extends JavaPlugin implements Listener {
             return false;
         }
     }
+
+    public boolean isBlackListChest(BlockState state){
+        if(state instanceof Chest){
+            Chest chest = (Chest) state;
+            if(chest.getLootTable() != null){
+                return getKeyList().contains(chest.getLootTable().getKey());
+            }
+
+        }
+        else if(state instanceof Barrel){
+            Barrel barrel = (Barrel) state;
+            if(barrel.getLootTable() != null){
+                return getKeyList().contains(barrel.getLootTable().getKey());
+            }
+        }
+
+        return false;
+    }
+
+    
 
     public boolean isBlackListMinecart(StorageMinecart minecart){
         if(minecart.getLootTable() != null){

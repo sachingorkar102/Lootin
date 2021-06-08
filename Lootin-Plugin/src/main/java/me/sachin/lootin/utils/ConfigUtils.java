@@ -82,4 +82,8 @@ public class ConfigUtils {
     public List<String> getBlackListCustomStructures(){
         return plugin.getConfig().getStringList(LConstants.BLACKLIST_CUSTOM_STRUCTURES);
     }
+
+    public List<String> getBlackListOTDStructures(){
+        return plugin.getConfig().getStringList(LConstants.BLACKLIST_OTD_STRUCTURES) == null ? new ArrayList<>() : plugin.getConfig().getStringList(LConstants.BLACKLIST_OTD_STRUCTURES);
+    }
 }
